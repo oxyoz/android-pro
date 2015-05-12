@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/menu_textviewlayout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/fragment_enroll_menu_layout_item_0"
+            style="@style/menu_textview_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="学校联系人情况" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/menu_textviewlayout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/fragment_enroll_menu_layout_item_1"
+            style="@style/menu_textview_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="生源信息管理" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/menu_textviewlayout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/fragment_enroll_menu_layout_item_2"
+            style="@style/menu_textview_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="录取信息查询" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/menu_textviewlayout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/fragment_enroll_menu_layout_item_3"
+            style="@style/menu_textview_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="就读情况查询" />
+    </LinearLayout>
+
+</LinearLayout>

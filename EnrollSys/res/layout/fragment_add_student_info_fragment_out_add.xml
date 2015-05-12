@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbarThumbVertical="@color/scrollview_color"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        style="@style/framelayout_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                android:id="@+id/out_txt_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:text="高招"
+                android:textColor="#FFFFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="考生号\t*" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+
+            <EditText
+                android:id="@+id/out_edt_examinees"
+                style="@style/add_student_info_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="14"
+                android:hint="14位数字" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="姓名\t*" />
+
+            <EditText
+                android:id="@+id/out_edt_stuName"
+                style="@style/add_student_info_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="身份证号" />
+
+            <EditText
+                android:id="@+id/out_edt_id"
+                style="@style/add_student_info_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="18" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="手机号码" />
+
+            <EditText
+                android:id="@+id/out_edt_tel"
+                style="@style/add_student_info_edittext_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="11" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="性别\t*" />
+
+            <RadioGroup
+                android:id="@+id/out_rdg_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/out_rd_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/radio_button_color"
+                    android:checked="true"
+                    android:text="男"
+                    android:textColor="@color/radio_button_color" />
+
+                <RadioButton
+                    android:id="@+id/out_rd_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:buttonTint="@color/radio_button_color"
+                    android:text="女"
+                    android:textColor="@color/radio_button_color" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="专业\t*" />
+
+            <TextView
+                android:id="@+id/out_txt_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/sp_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="24dp"
+                android:text="软件技术（服务外包方向）"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <TextView
+                style="@style/add_student_info_textview_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="志愿\t*" />
+
+            <TextView
+                android:id="@+id/out_txt_volunteer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/sp_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="24dp"
+                android:text="第一志愿"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/add_student_info_textview_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="生源学校\t*" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/out_school_txt_province"
+                    style="@style/add_student_info_school_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="北京"
+                    android:hint="省" />
+
+                <TextView
+                    android:id="@+id/out_school_txt_netherlands"
+                    style="@style/add_student_info_school_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="市辖区"
+                    android:hint="地区" />
+
+                <TextView
+                    android:id="@+id/out_school_txt_county"
+                    style="@style/add_student_info_school_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="市辖区"
+                    android:hint="市" />
+
+                <EditText
+                    android:id="@+id/out_school_edt_schoolName"
+                    style="@style/add_student_info_edittext_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="学校" >
+                </EditText>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/foregroud_color"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/out_txt_reset"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selector"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="重置"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/out_txt_submit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_selector"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="提交"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

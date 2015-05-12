@@ -1,0 +1,90 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <!-- 桢布局style -->
+    <style name="framelayout_style">
+        <item name="android:background">@color/backgroud_color</item>
+    </style>
+
+    <!-- 标题style -->
+
+    <style name="title_style">
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- 输入控件style -->
+    <style name="edt_base_style">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:textColor">@color/input_text_color</item>
+        <item name="android:background">@drawable/edt_selector</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <!-- 输入控件style -->
+
+    <style name="add_student_info_edittext_style" parent="edt_base_style">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+    </style>
+
+    <!-- menu_textview_style -->
+    <style name="menu_textview_style">
+        <item name="android:background">@drawable/btn_selector</item>
+        <item name="android:textColor">@color/menu_text_color</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!-- menu_textviewlayout_style -->
+    <style name="menu_textviewlayout_style">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+    </style>
+
+    <!-- add_student_info_textview_style -->
+    <style name="add_student_info_textview_style">
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textColor">@color/add_student_info_textview_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <!-- add_student_info_school_style-->
+	<style name="add_student_info_school_style">
+	    <item name="android:layout_marginLeft">16dp</item>
+	    <item name="android:layout_marginRight">16dp</item>
+	    <item name="android:background">@drawable/sp_bg</item>
+	    <item name="android:gravity">center_vertical</item>
+	    <item name="android:paddingLeft">16dp</item>
+	    <item name="android:textSize">18sp</item>
+	    <item name="android:textColor">@color/title_text_color</item>
+	    <item name="android:textColorHint">@color/hint_text_color</item>
+	</style>
+
+
+</resources>

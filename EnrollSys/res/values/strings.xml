@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">招生</string>
+
+    <string name="power_title">系统管理员</string>
+    <string name="head_name">admin</string> 
+    <string name="login_menu_title_set_ip">设置IP</string>
+    <string name="open_navigation_drawer">Open navigation drawer</string>
+    <string name="close_navigation_drawer">Close navigation drawer</string>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 标题文字颜色和标题背景颜色 -->
+    <color name="title_backgroud_color">#FF014345</color>
+    <color name="title_text_color">#FFFFFFFF</color>
+    
+    <!-- 子标题文字颜色和子标题背景颜色 -->
+    <color name="subtitle_backgroud_color">#FF028184</color>
+    <color name="subtitle_text_color">#FFFFFFFF</color>
+    
+    <!-- 功能布局背景颜色和前景颜色 -->
+    <color name="backgroud_color">#FF014345</color>
+    <color name="foregroud_color">#FF028184</color>
+    
+    <!-- 功能菜单文字颜色和背景颜色 -->
+    <color name="menu_backgroud_color">#FF028184</color>
+    <color name="menu_text_color">#FFFFFFFF</color>
+    
+    <!-- ListView内容背景色内容文字颜色、分割线颜色 -->
+    <color name="listview_text_color">#FF000000</color>
+    <color name="listview_backgroud_color_1">#FFEAEFF7</color>
+    <color name="listview_backgroud_color_2">#FFD2DEEF</color>
+    <color name="listview_division_color">#FFFFFFFF</color>
+    
+    <!-- 头像名字颜色--> 
+    <color name="head_name_text_color">#FFFFFFFF</color>
+    
+    <!-- 悬浮按钮颜色和内容颜色 -->
+    <color name="floatbutton_text_color">#FFFFFFFF</color>
+    <color name="floatbutton_backgroud_color">#FFFE0FC9</color>
+    
+    <!-- 阴影颜色 -->
+    <color name="shadow_color">#9A000000</color>
+    
+    <!-- RadioButton颜色 -->
+    <color name="radio_button_color">#FFFFFFFF</color>
+    
+    <!-- ScrollView颜色 -->
+    <color name="scrollview_color">#00FFFFFF</color>
+       
+    <!-- 按钮单击事件背景变化颜色 -->
+    <color name="btn_selected_bgcolor">#55000000</color>
+    <color name="btn_unselect_bgcolor">#FF028184</color>
+     
+    <!-- EditText提示文字的颜色和输入文字颜色--> 
+    <color name="hint_text_color">#99555555</color>
+    <color name="input_text_color">#FFFFFFFF</color>
+    
+    <!-- add_student_info_textview文字颜色 -->
+    <color name="add_student_info_textview_color">#55FFFFFF</color>
+        
+    <!-- listView welcome menu list selected and unselect color -->    
+    <color name="welcome_menu_list_selected_color">#FF028184</color>
+    <color name="welcome_menu_list_unselect_color">#FF028184</color>
+    
+    <!-- add_student_info_rdg_add_type选中颜色 -->
+    <color name="add_student_info_rd_selected_color">#33FFFFFF</color>
+    <color name="add_student_info_rd_unselect_color">#00FFFFFF</color>
+    
+</resources>
