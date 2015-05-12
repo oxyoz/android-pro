@@ -1,0 +1,211 @@
+package oz.common.utils.net;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class URLUtils {
+
+	/**
+	 * isVideoUrl是否为video链接
+	 * */
+	public static boolean isVideoUrl(String url)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?://.+\\.(avi)?(AVI)?(mp4)?(MP4)?(3gp)?(3GP)?(rmvb)?(RMVB)?(rm)?(RM)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(url);
+		
+		return m.matches();
+		
+	}
+	
+	/**
+	 * getVideoUrl获取为video链接
+	 * */
+	public static String[] getVideoUrl(String strData)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?://.+\\.(avi)?(AVI)?(mp4)?(MP4)?(3gp)?(3GP)?(rmvb)?(RMVB)?(rm)?(RM)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(strData);
+		
+		List<String> list = new ArrayList<String>();
+		
+		while (m.find())
+		{
+			
+			list.add(m.group());
+			
+		}
+		
+		String urls[] = new String[list.size()];
+		
+		for (int i = 0; i < urls.length; i++)
+		{
+			
+			urls[i] = list.get(i);
+			
+		}
+		
+		return urls;
+		
+	}
+	
+	/**
+	 * isVideoUrl是否为直播video链接
+	 * */
+	public static boolean isLiveVideoUrl(String url)
+	{
+		
+		String regex = "(rtmp)?(RTMP)?://.+";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(url);
+		
+		return m.matches();
+		
+	}
+	
+	/**
+	 * getLiveVideoUrl获取为直播video链接
+	 * */
+	public static String[] getLiveVideoUrl(String strData)
+	{
+		
+		String regex = "(rtmp)?(RTMP)?://.+";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(strData);
+		
+		List<String> list = new ArrayList<String>();
+		
+		while (m.find())
+		{
+			
+			list.add(m.group());
+			
+		}
+		
+		String urls[] = new String[list.size()];
+		
+		for (int i = 0; i < urls.length; i++)
+		{
+			
+			urls[i] = list.get(i);
+			
+		}
+		
+		return urls;
+		
+	}
+	
+	/**
+	 * isVideoUrl是否为直播video链接
+	 * */
+	public static boolean isImageUrl(String url)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?(file)?(FILE)?://.+\\.(jpg)?(JPG)?(png)?(PNG)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(url);
+		
+		return m.matches();
+		
+	}
+	
+	/**
+	 * getImageUrl获取Image链接
+	 * */
+	public static String[] getImageUrl(String strData)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?(file)?(FILE)?://.+\\.(jpg)?(JPG)?(png)?(PNG)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(strData);
+		
+		List<String> list = new ArrayList<String>();
+		
+		while (m.find())
+		{
+			
+			list.add(m.group());
+			
+		}
+		
+		String urls[] = new String[list.size()];
+		
+		for (int i = 0; i < urls.length; i++)
+		{
+			
+			urls[i] = list.get(i);
+			
+		}
+		
+		return urls;
+		
+	}
+	
+	/**
+	 * isAudioUrl是否为audio链接
+	 * */
+	public static boolean isAudioUrl(String url)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?(file)?(FILE)?://.+\\.(mp3)?(MP3)?(wvm)?(WVM)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(url);
+		
+		return m.matches();
+		
+	}
+	
+	/**
+	 * getAudioUrl获取Audio链接
+	 * */
+	public static String[] getAudioUrl(String strData)
+	{
+		
+		String regex = "(http)?(HTTP)?(https)?(HTTPS)?(ftp)?(FTP)?(file)?(FILE)?://.+\\.(mp3)?(MP3)?(wvm)?(WVM)?";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		Matcher m = p.matcher(strData);
+		
+		List<String> list = new ArrayList<String>();
+		
+		while (m.find())
+		{
+			
+			list.add(m.group());
+			
+		}
+		
+		String urls[] = new String[list.size()];
+		
+		for (int i = 0; i < urls.length; i++)
+		{
+			
+			urls[i] = list.get(i);
+			
+		}
+		
+		return urls;
+		
+	}
+	
+	
+}

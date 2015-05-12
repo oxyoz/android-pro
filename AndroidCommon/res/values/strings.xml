@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="app_name">Common-demo</string>
+
+    <!-- sweet dialog -->
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="LOADING">Loading...</string>
+
+    <!-- materaillish progress -->
+    
+    <string name="default_progressbar">Default Progressbar:</string>
+
+    <!-- 二维码 -->
+    
+    <string name="capture_activity_lable">二维码扫描</string>
+    
+    
+    <!-- DropDownListView -->
+    <string name="drop_down_list_header_default_text">Click to refresh</string>
+    <string name="drop_down_list_header_pull_text">Drop Down to refresh</string>
+    <string name="drop_down_list_header_release_text">Release to refresh</string>
+    <string name="drop_down_list_header_loading_text">Loading</string>
+    <string name="drop_down_list_footer_default_text">More</string>
+    <string name="drop_down_list_footer_loading_text">Loading</string>
+    <string name="drop_down_list_footer_no_more_text">No More</string>
+    
+    <string name="image_content">Image</string>
+</resources>

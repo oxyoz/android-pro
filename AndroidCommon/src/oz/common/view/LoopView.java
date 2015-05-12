@@ -1,0 +1,844 @@
+/**  
+ * Project Name:HelloAndroid  
+ * File Name:LoopView.java  
+ * Package Name:com.oz.custom.view  
+ * Date:2015年2月5日下午2:23:12  
+ * Copyright (c) 2015, ozcomcn@foxmail.com All Rights Reserved.  
+ *  
+ */
+
+package oz.common.view;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import oz.common.main.R;
+import oz.common.utils.ImageUtils;
+import oz.common.utils.net.NetAfinal;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.Handler;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
+
+/**
+ * ClassName:LoopView <br/>
+ * Function: TODO ADD FUNCTION. <br/>
+ * Reason: TODO ADD REASON. <br/>
+ * Date: 2015年2月5日 下午2:23:12 <br/>
+ * 
+ * @author Administrator
+ * @version
+ * @since JDK 1.6
+ * @see
+ */
+public class LoopView extends FrameLayout implements OnTouchListener,
+		OnPageChangeListener, OnCheckedChangeListener, OnClickListener{
+	
+	private int mPosition;
+	
+	private OnClickCurrentPage mOnClickCurrentPage;
+	
+	private ViewPager mViewPager;
+
+	private Context mContext;
+
+	private PagerAdapter mAdapter;
+
+	private int mCountPage;
+
+	private Handler mHandler;
+
+	private int mCurrentPage;
+
+	private boolean mIsLoop;
+
+	private int mDelay = 1000;
+
+	private List<View> listViews;
+
+	private List<Bitmap> listBitmaps;
+
+	Animation animation;
+
+	private RelativeLayout mRelativeLayout;
+
+	private RadioGroup mRadioGroup;
+
+	private int pointerStrokeColor;
+
+	private int pointerColor;
+
+	private int pointerSize;
+
+	public LoopView(Context context) {
+		super(context);
+
+		mContext = context;
+
+		init();
+
+	}
+
+	public LoopView(Context context, AttributeSet attrs) {
+
+		super(context, attrs);
+
+		mContext = context;
+
+		init();
+
+	}
+
+	public LoopView(Context context, AttributeSet attrs, int defStyle) {
+
+		super(context, attrs, defStyle);
+
+		mContext = context;
+
+		init();
+
+	}
+
+	private void init() {
+		
+		pointerStrokeColor = 0xFFFFFFFF;
+
+		pointerColor = 0xFFFFFFFF;
+
+		pointerSize = 32;
+
+		animation = AnimationUtils.loadAnimation(mContext, R.anim.show_view);
+
+		mViewPager = new ViewPager(mContext);
+
+		addView(mViewPager);
+		
+		mViewPager.setOnPageChangeListener(this);
+
+		mViewPager.setLayoutParams(new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.MATCH_PARENT));
+
+		mHandler = new Handler();
+
+		listViews = new ArrayList<View>();
+
+		listBitmaps = new ArrayList<Bitmap>();
+
+		mViewPager.setOnTouchListener(this);
+		
+		setAdapter(new MPagerAdapter());
+
+		addPointerGroup();
+
+	}
+
+	public List<Bitmap> getListDrawables() {
+		return listBitmaps;
+	}
+
+	
+//	public List<byte[]> getListDrawablesByte() {
+//		
+//		List<byte[]> drawablesByte = new ArrayList<byte[]>();
+//		
+//		for(Bitmap drawable:listBitmaps)
+//		{
+//			
+//			drawablesByte.add(ImageUtils.drawableToByte(drawable));
+//			
+//		}
+//				
+//		return drawablesByte;
+//		
+//	}
+	
+	public List<View> getListViews() {
+		return listViews;
+	}
+
+	public LoopView setAdapter(PagerAdapter adapter) {
+
+		mAdapter = adapter;
+
+		mViewPager.setAdapter(mAdapter);
+
+		mCountPage = mAdapter.getCount();
+
+		return this;
+
+	}
+
+	public LoopView addLoopView(View view) {
+
+		if (mAdapter != null) {
+
+			view.setOnClickListener(this);
+			
+			listViews.add(view);
+
+			mAdapter.notifyDataSetChanged();
+
+			mCountPage = mAdapter.getCount();
+
+			addPointer();
+
+		}
+
+		return this;
+	}
+
+	public LoopView addLoopImage(int resId) {
+
+		if (mAdapter != null) {
+
+			ImageView view = new ImageView(mContext);
+
+			view.setImageResource(resId);
+
+			view.setScaleType(ScaleType.FIT_XY);
+
+			view.setOnClickListener(this);
+			
+			listViews.add(view);
+
+			mAdapter.notifyDataSetChanged();
+
+			mCountPage = mAdapter.getCount();
+
+			addPointer();
+
+		}
+
+		return this;
+	}
+
+	public LoopView addLoopImage(Bitmap bm) {
+
+		if (mAdapter != null) {
+
+			ImageView view = new ImageView(mContext);
+
+			view.setImageBitmap(bm);
+
+			view.setScaleType(ScaleType.CENTER_CROP);
+
+			view.setOnClickListener(this);
+			
+			listViews.add(view);
+
+			mAdapter.notifyDataSetChanged();
+
+			mCountPage = mAdapter.getCount();
+
+			addPointer();
+
+		}
+
+		return this;
+	}
+
+	public LoopView addLoopImage(Bitmap... bms) {
+
+		if (mAdapter != null) {
+
+			for (Bitmap bm : bms) {
+
+				ImageView view = new ImageView(mContext);
+
+				view.setImageBitmap(bm);
+
+				view.setScaleType(ScaleType.CENTER_CROP);
+
+				view.setOnClickListener(this);
+				
+				listViews.add(view);
+
+				mAdapter.notifyDataSetChanged();
+
+				mCountPage = mAdapter.getCount();
+
+				addPointer();
+
+			}
+
+		}
+
+		return this;
+	}
+
+	public LoopView addLoopImage(Drawable... drawables) {
+
+		if (mAdapter != null) {
+
+			for (Drawable drawable : drawables) {
+
+				ImageView view = new ImageView(mContext);
+
+				view.setImageDrawable(drawable);
+
+				view.setScaleType(ScaleType.CENTER_CROP);
+
+				view.setOnClickListener(this);
+				
+				listViews.add(view);
+
+				mAdapter.notifyDataSetChanged();
+
+				mCountPage = mAdapter.getCount();
+
+				addPointer();
+
+			}
+
+		}
+
+		return this;
+	}
+
+	
+	public LoopView addLoopImageByDrawables(List<Drawable> drawables) {
+
+		if (mAdapter != null) {
+
+			for (Drawable drawable : drawables) {
+
+				ImageView view = new ImageView(mContext);
+
+				view.setImageDrawable(drawable);
+
+				view.setScaleType(ScaleType.CENTER_CROP);
+
+				view.setOnClickListener(this);
+				
+				listViews.add(view);
+
+				mAdapter.notifyDataSetChanged();
+
+				mCountPage = mAdapter.getCount();
+
+				addPointer();
+
+			}
+
+		}
+
+		return this;
+	}
+	
+	
+	public LoopView addLoopImageByBitmaps(List<Bitmap> bms) {
+
+		if (mAdapter != null) {
+
+			for (Bitmap bm : bms) {
+
+				ImageView view = new ImageView(mContext);
+
+				view.setImageBitmap(bm);
+
+				view.setScaleType(ScaleType.CENTER_CROP);
+
+				view.setOnClickListener(this);
+				
+				listViews.add(view);
+
+				mAdapter.notifyDataSetChanged();
+
+				mCountPage = mAdapter.getCount();
+
+				addPointer();
+
+			}
+
+		}
+
+		return this;
+	}
+	
+	
+	public LoopView addLoopImage(Drawable drawable) {
+
+		if (mAdapter != null) {
+
+			ImageView view = new ImageView(mContext);
+
+			view.setImageDrawable(drawable);
+
+			view.setScaleType(ScaleType.CENTER_CROP);
+
+			view.setOnClickListener(this);
+			
+			listViews.add(view);
+
+			mAdapter.notifyDataSetChanged();
+
+			mCountPage = mAdapter.getCount();
+
+			addPointer();
+
+		}
+
+		return this;
+	}
+
+	public LoopView addLoopImage(String... urls) {
+
+		if (mAdapter != null) {
+
+			for (String url : urls) {
+
+				final ImageView view = new ImageView(mContext);
+
+				NetAfinal.getFinalBitmap(mContext).display(view, url);
+
+				view.setScaleType(ScaleType.CENTER_CROP);
+
+				view.setOnClickListener(this);
+				
+				listViews.add(view);
+
+				mAdapter.notifyDataSetChanged();
+
+				mCountPage = mAdapter.getCount();
+
+				addPointer();
+
+				listBitmaps.add(ImageUtils.drawableToBitmap(view.getDrawable()));
+
+			}
+
+		}
+
+		return this;
+	}
+
+	private class MPagerAdapter extends PagerAdapter {
+
+		@Override
+		public View instantiateItem(ViewGroup container, int position) {
+
+			container.addView(listViews.get(position));
+
+			return listViews.get(position);
+
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+
+			container.removeView(listViews.get(position));
+
+		}
+
+		@Override
+		public boolean isViewFromObject(View view, Object obj) {
+
+			return view == obj;
+		}
+
+		@Override
+		public int getCount() {
+
+			return listViews.size();
+		}
+
+	}
+
+	public void start() {
+
+		mIsLoop = true;
+
+		mHandler.post(new Runnable() {
+
+			@Override
+			public void run() {
+
+				if (mIsLoop) {
+
+					mCurrentPage = mViewPager.getCurrentItem();
+
+					loop();
+
+					mHandler.postDelayed(this, mDelay);
+
+				}
+
+			}
+		});
+
+	}
+
+	private void loop() {
+
+		if (mCurrentPage == mCountPage - 1) {
+
+			mCurrentPage = -1;
+
+		}
+
+		mViewPager.setCurrentItem(mCurrentPage + 1);
+
+		if (mRadioGroup.getChildCount() != 0) {
+
+			((RadioButton) mRadioGroup.getChildAt(mCurrentPage + 1))
+					.setChecked(true);
+
+		}
+
+		if (listViews.size() != 0) {
+
+			// startAnimation(listViews.get(mCurrentPage + 1));
+
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private void startAnimation(View view) {
+
+		view.startAnimation(animation);
+
+	}
+
+	public void stop() {
+
+		mIsLoop = false;
+
+	}
+
+	public boolean isLoop() {
+		return mIsLoop;
+	}
+
+	public LoopView setDelay(int delayMillis) {
+
+		mDelay = delayMillis;
+
+		return this;
+		
+	}
+
+	public int getDelay() {
+
+		return mDelay;
+
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+
+		if (mViewPager == v) {
+
+			float downX = 0;
+
+			float dX = 0;
+
+			switch (event.getAction()) {
+
+			case MotionEvent.ACTION_DOWN:
+
+				downX = event.getX();
+
+				break;
+
+			case MotionEvent.ACTION_UP:
+
+				dX = event.getX() - downX;
+
+				break;
+
+			}
+
+//			if (dX > 50) {
+//
+//				if (mViewPager.getCurrentItem() == 0) {
+//
+//					mViewPager.setCurrentItem(mCountPage - 1, false);
+//
+//				}
+//
+//			}
+
+			if (dX < -50) {
+
+				if (mViewPager.getCurrentItem() == mCountPage - 1) {
+
+					mViewPager.setCurrentItem(0, false);
+
+				}
+
+			}
+
+		}
+
+		return false;
+	}
+
+	private void addPointer() {
+
+		if (mRadioGroup == null) {
+
+			addPointerGroup();
+
+		}
+
+		mRadioGroup.addView(createPointer());
+
+		if (mRadioGroup.getChildCount() == 1) {
+
+			((RadioButton) mRadioGroup.getChildAt(0)).setChecked(true);
+
+		}
+
+	}
+
+	private List<Integer> radioIds = new ArrayList<Integer>();
+
+	private Integer baseRadioId = 0xFFFF0;
+
+	@SuppressLint("NewApi")
+	private RadioButton createPointer() {
+
+		RadioButton radio = new RadioButton(mContext);
+
+		Integer id = baseRadioId += 1;
+
+		radio.setId(id);
+
+		radioIds.add(id);
+
+		radio.setButtonDrawable(android.R.color.transparent);
+
+		radio.setBackground(craeteSelector());
+
+		RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(16, 16);
+
+		params.leftMargin = 8;
+
+		params.rightMargin = 8;
+
+		params.topMargin = 8;
+
+		params.bottomMargin = 8;
+
+		radio.setLayoutParams(params);
+
+		return radio;
+
+	}
+
+	private StateListDrawable craeteSelector() {
+
+		GradientDrawable drawable = new GradientDrawable();
+
+		drawable.setShape(GradientDrawable.OVAL);
+
+		drawable.setStroke(1, pointerStrokeColor);
+
+		drawable.setColor(pointerColor);
+
+		drawable.setSize(pointerSize, pointerSize);
+
+		GradientDrawable undrawable = new GradientDrawable();
+
+		undrawable.setShape(GradientDrawable.OVAL);
+
+		undrawable.setStroke(1, pointerStrokeColor);
+
+		undrawable.setColor(0x00FFFFFF);
+
+		undrawable.setSize(pointerSize, pointerSize);
+
+		StateListDrawable stateDrawable = new StateListDrawable();
+
+		stateDrawable.addState(new int[] { android.R.attr.state_checked },
+				drawable);
+
+		stateDrawable.addState(new int[] { -android.R.attr.state_checked },
+				undrawable);
+
+		return stateDrawable;
+
+	}
+
+	private void addPointerGroup() {
+
+		mRelativeLayout = new RelativeLayout(mContext);
+
+		addView(mRelativeLayout, new FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.MATCH_PARENT));
+
+		mRadioGroup = new RadioGroup(mContext);
+
+		mRadioGroup.setOrientation(RadioGroup.HORIZONTAL);
+
+		mRadioGroup.setPadding(2, 2, 2, 2);
+
+		mRadioGroup.setGravity(Gravity.CENTER);
+
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+		mRelativeLayout.addView(mRadioGroup, params);
+
+		mRadioGroup.setOnCheckedChangeListener(this);
+
+	}
+
+	public void setPointerAlign(int relativeLayoutAlign) {
+
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+		mRelativeLayout.addView(mRadioGroup, params);
+
+	}
+
+	public void setPointerGravity(int gravity) {
+
+		mRadioGroup.setGravity(gravity);
+
+	}
+
+	public int getPointerStrokeColor() {
+		return pointerStrokeColor;
+	}
+
+	public void setPointerStrokeColor(int pointerStrokeColor) {
+		this.pointerStrokeColor = pointerStrokeColor;
+	}
+
+	public int getPointerColor() {
+		return pointerColor;
+	}
+
+	public void setPointerColor(int pointerColor) {
+		this.pointerColor = pointerColor;
+	}
+
+	public int getPointerSize() {
+		return pointerSize;
+	}
+
+	public void setPointerSize(int pointerSize) {
+		this.pointerSize = pointerSize;
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onPageSelected(int index) {
+
+		mPosition = index;
+		
+		((RadioButton) mRadioGroup.getChildAt(index)).setChecked(true);
+
+	}
+
+	
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+		for (int i = 0; i < radioIds.size(); i++) {
+
+			if (checkedId == radioIds.get(i)) {
+
+				mViewPager.setCurrentItem(i);
+
+			}
+
+		}
+
+	}
+
+	public void setCurrentItem(int position)
+	{
+		
+		mViewPager.setCurrentItem(position);
+		
+	}
+	
+	
+	@Override
+	public void onClick(View v) {
+
+		
+		if(mOnClickCurrentPage != null)
+		{
+	
+			mOnClickCurrentPage.onCurrentPagePostion(v, mPosition);
+			
+		}
+	
+	}
+
+	
+	
+	/**
+	 * 
+	 * com.wjtcam.wda.common.view
+	 * @param OnClickCurrentPage  
+	 * 		  OnClickCurrentPage的类名是com.wjtcam.wda.common.view.LoopView.OnClickCurrentPage，
+	 * 		     是LoopView的事件监听内部接口	
+	 * 
+	 * */
+	public void setOnClickCurrentPage(OnClickCurrentPage onClickCurrentPage)
+	{
+		
+		mOnClickCurrentPage = onClickCurrentPage;
+		
+	}
+	
+	
+	/**
+	 * 
+	 * OnClickCurrentPage 是LoopView的事件监听内部接口,主要监听LoopView当前的page对象的位置。
+	 * 
+	 * */
+	public interface OnClickCurrentPage
+	{
+		
+		public void onCurrentPagePostion(View v, int postion);
+		
+	}
+	
+}

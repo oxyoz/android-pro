@@ -1,0 +1,72 @@
+10
+
+dir
+0
+svn://192.168.2.111/wjtcam/com-wjtcam/wjtcam-wda/Wjtcam-wda-common/src/oz/common
+svn://192.168.2.111/wjtcam
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5b2fa06c-52ce-0c47-aa46-452ae7021ddb
+
+sweetdialog
+dir
+
+
+
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://192.168.2.111/wjtcam/com-wjtcam/wjtcam-wda/Wjtcam-wda-common/src/com/wjtcam/wda/common/sweetdialog
+1928
+
+toast
+dir
+
+
+
+add
+
+utils
+dir
+
+
+
+add
+
+view
+dir
+
+
+
+add
+
