@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#77FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/txt_time_card_year"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="fill_vertical"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/txt_time_card_startTime"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="fill_vertical"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/txt_time_card_content"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="fill_vertical"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/txt_time_card_endTime"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="fill_vertical"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:typeface="serif" />
+    </LinearLayout>
+
+</LinearLayout>

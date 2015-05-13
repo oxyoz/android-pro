@@ -1,0 +1,151 @@
+package com.main.v;
+
+import android.os.Bundle;
+import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.config.api.API;
+import com.main.m.StatusMessage;
+import com.util.network.NetworkUtil;
+import com.util.parse.JsonParse;
+
+public class LoginActivity extends BasicActivity {
+	private int STATUS_MESSAGE = 0;
+	private int UPDATE_UI = 1;
+	
+	private EditText edt_userName = null;
+	private EditText edt_userPassword = null;
+	private Button btn_login = null;
+	private Button btn_exit = null;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_login);
+		init();
+	}
+
+	
+	private void init(){
+		instanceWedget();
+		setEventWedget();
+	}
+	
+	private void instanceWedget(){
+		
+		this.btn_exit = (Button) findViewById(R.id.btn_exit);
+		this.btn_login = (Button) findViewById(R.id.btn_login);
+		this.edt_userName = (EditText) findViewById(R.id.edt_userName);
+		this.edt_userPassword = (EditText) findViewById(R.id.edt_userPassword);
+	}
+	
+	private void setEventWedget(){
+		
+		this.btn_exit.setOnClickListener(this);
+		this.btn_login.setOnClickListener(this);
+		
+	}
+	
+	
+	@Override
+	public void handlerMethod(Message msg) {
+		super.handlerMethod(msg);
+		
+		if(msg.what == this.STATUS_MESSAGE)
+		{
+			StatusMessage statusMessage = (StatusMessage)msg.obj;
+			
+			if(statusMessage.getStatus()=="1")
+			{
+				Toast.makeText(this, statusMessage.getMessage(), Toast.LENGTH_LONG).show();			
+			}
+			else
+			{
+				Toast.makeText(this, statusMessage.getMessage(), Toast.LENGTH_LONG).show();	
+			}
+		}
+		else if(msg.what == this.UPDATE_UI)
+		{
+		
+			//更新UI的内容
+			
+		}
+		
+		
+	}
+	
+	
+	
+	@Override
+	public void run() {
+		super.run();
+		
+		String jsonString = NetworkUtil.getResponseData(API.login.login_api(
+							this.edt_userName.getText().toString(), 
+							this.edt_userPassword.getText().toString()));
+		
+		StatusMessage statusMessage = JsonParse.statusParse(jsonString);
+		
+		if(statusMessage!=null)
+		{
+			
+			Message msg = new Message();
+			msg.what = STATUS_MESSAGE;
+			msg.obj = statusMessage;			
+			this.getHandler().sendMessage(msg);
+		
+		}
+		
+	}
+	
+	
+	@Override
+	public void onClick(View v) 
+	{
+		super.onClick(v);
+		
+		if(this.btn_login.equals((Button)v))
+		{
+			
+			new Thread(this).start();
+			
+		}
+		else if(this.btn_exit.equals((Button)v))
+		{
+			
+			System.exit(0);
+			
+		}
+		
+	}
+	
+	
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.login, menu);
+		return true;
+	}
+
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+}

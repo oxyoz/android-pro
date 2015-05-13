@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="titleColor">#009966</color>
+    <color name="loginHeadBgColor">#FFFFFF</color>
+    <color name="loginBgColor">#009966</color>
+	<color name="btnLoginBgColor">#66CCCC</color>
+	<color name="loginHeadBorderColor">#009966</color>
+	<color name="contentBgColor">#FFFFFF</color>
+	
+    <color name="shadowColor">#666666</color>
+    <color name="strokeColor">#FFFFFF</color>
+    
+    <color name="navigation_drawer_fragment_bgcolor">#33FF9966</color>
+    <color name="expandable_group_item_bgColor">#009966</color>
+    <color name="expandable_child_item_bgColor">#FFFFCC</color>
+</resources>
+

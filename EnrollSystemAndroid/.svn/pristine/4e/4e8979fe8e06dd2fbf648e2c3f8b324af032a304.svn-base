@@ -1,0 +1,138 @@
+package com.util.network;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
+import android.util.Log;
+
+
+
+/**
+ * 
+ * 访问网络工具类
+ * @author oz
+ *
+ */
+public class NetworkUtil {
+
+	public static String JSPSESSID = null;// 静态变量用来保存jspsessid的值
+	
+	public static String getResponseData(String url)
+	{
+		
+		Log.i("putJsonString()", "run putJsonString()......");
+		// 获得HttpPost实例
+		HttpPost request = new HttpPost(url);
+		// System.out.println(request.getURI());
+		String result = null;
+		if (null != JSPSESSID) {// 判断sessionid是否为空，不为空将就将jspsessid的值放在cookie中发送给服务器
+			request.setHeader("Cookie", "JSPSESSID=" + JSPSESSID);
+		}
+		// 实例化连接
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+
+		try {
+			// 获得HttpResponse实例
+			HttpResponse response = new DefaultHttpClient().execute(request);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				result = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+				CookieStore mCookieStore = httpClient.getCookieStore();// 取得cookiestore
+				List<Cookie> list = mCookieStore.getCookies();
+				for (int i = 0; i < list.size(); i++) {
+					// 读取Cookie['JSPSESSID']的值存在静态变量中，保证每次都是同一个值
+					if ("JSPSESSID".equals(list.get(i).getName())) {
+						JSPSESSID = list.get(i).getValue();
+					}
+				}
+				Log.i("JsonString_Data", result);
+				return result;
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			result = "网络异常";
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = "网络异常";
+
+		}
+		Log.i("网络", result + "......");
+		
+			
+		return null;
+	}
+	 
+	
+	
+	public static String postResponseData(String url,List<NameValuePair> parameters)
+	{
+		HttpPost request = new HttpPost(url);	
+		Log.i("putJsonString()", "run putJsonString()......");
+		// 获得HttpPost实例
+		
+		// System.out.println(request.getURI());
+		try {
+			
+			request.setEntity(new UrlEncodedFormEntity(parameters,"utf-8"));
+			Log.i("seted...", "seted parameters......");
+		} catch (UnsupportedEncodingException e1) {
+			
+			e1.printStackTrace();
+			
+		}
+	
+		
+		String result = null;
+		if (null != JSPSESSID) {// 判断sessionid是否为空，不为空将就将jspsessid的值放在cookie中发送给服务器
+			request.setHeader("Cookie", "JSPSESSID=" + JSPSESSID);
+		}
+		// 实例化连接
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+
+		try {
+			// 获得HttpResponse实例
+			HttpResponse response = new DefaultHttpClient().execute(request);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				result = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+				CookieStore mCookieStore = httpClient.getCookieStore();// 取得cookiestore
+				List<Cookie> list = mCookieStore.getCookies();
+				for (int i = 0; i < list.size(); i++) {
+					// 读取Cookie['JSPSESSID']的值存在静态变量中，保证每次都是同一个值
+					if ("JSPSESSID".equals(list.get(i).getName())) {
+						JSPSESSID = list.get(i).getValue();
+					}
+				}
+				Log.i("JsonString_Data", result);
+				return result;
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			result = "网络异常";
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = "网络异常";
+
+		}
+		Log.i("网络", result + "......");
+		
+			
+		return null;
+	}
+	 
+	
+	
+	
+}

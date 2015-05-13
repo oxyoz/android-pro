@@ -1,0 +1,37 @@
+package com.util.parse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.main.m.StatusMessage;
+
+public class JsonParse {
+
+	
+	public static StatusMessage statusParse(String jsonString)
+	{
+		JSONObject jsonObject;
+		StatusMessage statusMessage = null;
+		try {
+			
+			jsonObject = new JSONObject(jsonString);
+			String status = jsonObject.getString("status");
+			String message = jsonObject.getString("message");
+			if(status!=null&&message!=null&&status!=""&&message!="")
+			{
+				
+				statusMessage = new StatusMessage(status,message);
+				
+			}
+			
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+			
+		}     
+	
+		
+		return statusMessage;
+	}
+	
+}
