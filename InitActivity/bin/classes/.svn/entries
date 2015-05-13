@@ -2,7 +2,7 @@
 
 dir
 1517
-svn://192.168.2.111/wjtcam/com-wjtcam/wjtcam-wda/InitActivity/bin/classes
+svn://192.168.2.111/wjtcam/com-wjtcam/wjtcam-wda/InitActivity/src
 svn://192.168.2.111/wjtcam
 
 
@@ -25,4 +25,7 @@ svn:special svn:externals svn:needs-lock
 
 
 5b2fa06c-52ce-0c47-aa46-452ae7021ddb
+
+io
+dir
 
