@@ -97,6 +97,13 @@ ouzhi
 .settings
 dir
 
+AndroidCommon.iml
+file
+0
+
+
+add
+
 AndroidManifest.xml
 file
 1929
